@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
@@ -19,6 +20,7 @@ class ContactAdapter(
     }
 
     class ContactViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val imgProfile: ImageView = itemView.findViewById(R.id.imgProfile)
         val tvContactName: TextView = itemView.findViewById(R.id.tvContactName)
         val tvContactPhone: TextView = itemView.findViewById(R.id.tvContactPhone)
         val btnEdit: Button = itemView.findViewById(R.id.btnEdit)
@@ -37,20 +39,17 @@ class ContactAdapter(
         holder.tvContactName.text = currentContact.name
         holder.tvContactPhone.text = currentContact.phone
 
-        holder.itemView.setOnClickListener {
-            listener.onItemClick(position)
+        // Display profile picture if available, else default
+        if (currentContact.profileUri != null) {
+            holder.imgProfile.setImageURI(currentContact.profileUri)
+        } else {
+            holder.imgProfile.setImageResource(R.drawable.ic_person_placeholder)
         }
 
-        holder.btnEdit.setOnClickListener {
-            listener.onEditClick(position)
-        }
-
-        holder.btnDelete.setOnClickListener {
-            listener.onDeleteClick(position)
-        }
+        holder.itemView.setOnClickListener { listener.onItemClick(position) }
+        holder.btnEdit.setOnClickListener { listener.onEditClick(position) }
+        holder.btnDelete.setOnClickListener { listener.onDeleteClick(position) }
     }
 
-    override fun getItemCount(): Int {
-        return contactList.size
-    }
+    override fun getItemCount(): Int = contactList.size
 }

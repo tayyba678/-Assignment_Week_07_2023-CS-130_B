@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
@@ -9,6 +10,7 @@
     android:padding="16dp"
     tools:context=".MainActivity">
 
+    <!-- Title -->
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
@@ -19,6 +21,21 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="16dp" />
 
+    <!-- Profile Picture -->
+    <ImageView
+        android:id="@+id/imgProfile"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_person_placeholder"
+        android:background="@android:color/darker_gray"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center_horizontal"
+        android:contentDescription="Profile Picture"
+        android:layout_marginBottom="8dp"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <!-- Name Input -->
     <EditText
         android:id="@+id/etName"
         android:layout_width="match_parent"
@@ -27,6 +44,7 @@
         android:inputType="textPersonName"
         android:layout_marginBottom="10dp" />
 
+    <!-- Phone Input -->
     <EditText
         android:id="@+id/etPhone"
         android:layout_width="match_parent"
@@ -36,7 +54,7 @@
         android:maxLength="11"
         android:layout_marginBottom="12dp" />
 
-
+    <!-- Save Contact Button -->
     <Button
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
@@ -44,13 +62,34 @@
         android:text="Save Contact"
         android:layout_marginBottom="16dp" />
 
+    <!-- Search Input -->
+    <EditText
+        android:id="@+id/etSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search by Name"
+        android:inputType="text"
+        android:layout_marginBottom="8dp" />
+
+    <!-- Sort Button -->
+    <Button
+        android:id="@+id/btnSort"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sort A-Z"
+        android:layout_gravity="end"
+        android:layout_marginBottom="8dp" />
+
+    <!-- RecyclerView for Contacts -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewContacts"
         android:layout_width="match_parent"
-        android:layout_height="287dp"
+        android:layout_height="0dp"
         android:layout_weight="1"
         android:clipToPadding="false"
         android:paddingBottom="8dp" />
+
+    <!-- Load Contacts from Phone -->
     <Button
         android:id="@+id/btnLoadContacts"
         android:layout_width="match_parent"
